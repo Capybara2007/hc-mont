@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#087be8">
+  <meta name="description" content="Zakažite popravku, ugradnju ili proveru klima uređaja.">
+  <title>HC MONT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+      <img src="Untitled design (24).png">
+    <button class="menu-toggle" id="menuToggle" aria-label="Otvori meni" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#usluge">Usluge</a>
+      <a href="#zakazivanje">Zakaži termin</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="ga.html">Galerija</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="pocetna">
+      <div class="hero-content">
+        <span class="eyebrow">POUZDAN SERVIS KLIMA</span>
+        <h1>Uvek prijatna <span>temperatura.</span></h1>
+        <p>Brza i pouzdana usluga popravke, ugradnje i provere klima uređaja.</p>
+        <a class="button button-primary" href="#zakazivanje">Zakaži termin <span aria-hidden="true">→</span></a>
+        <div class="trust-list">
+          <span>✓ Kvalitetna usluga</span>
+          <span>✓ Dogovor oko termina</span>
+          <span>✓ Ljubazni majstori</span>
+          
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Ilustracija klima uređaja">
+        <div class="sun"></div>
+        <div class="ac-unit"><div class="ac-line"></div><div class="air-lines"><i></i><i></i><i></i></div></div>
+        <div class="plant plant-one"><i></i><i></i><i></i><i></i><b></b></div>
+        <div class="plant plant-two"><i></i><i></i><i></i><b></b></div>
+      </div>
+    </section>
+
+    <section class="section" id="usluge">
+      <div class="section-heading">
+        
+        <h6>Naše usluge</h6>
+        <p>Izaberite uslugu koja vam je potrebna.</p>
+      </div>
+      <div class="service-grid">
+        <button class="service-card repair" type="button" data-service="Popravka">
+          <span class="service-icon">🔧</span>
+          <strong>Popravka klime</strong>
+          <span>Pronalaženje kvara i popravka klima uređaja.</span>
+          <span class="service-link">Izaberi uslugu →</span>
+        </button>
+        <button class="service-card install" type="button" data-service="Ugradnja">
+          <span class="service-icon">❄</span>
+          <strong>Ugradnja klime</strong>
+          <span>Dogovor za profesionalnu ugradnju uređaja.</span>
+          <span class="service-link">Izaberi uslugu →</span>
+        </button>
+        <button class="service-card check" type="button" data-service="Provera">
+          <span class="service-icon">✓</span>
+          <strong>Godišnja provera</strong>
+          <span>Zakažite proveru i održavanje klima uređaja.</span>
+          <span class="service-link">Izaberi uslugu →</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="booking-section" id="zakazivanje">
+      <div class="booking-intro">
+        <span class="booking-icon">▦</span>
+        <div>
+          <span class="eyebrow">JEDNOSTAVNO ZAKAZIVANJE</span>
+          <h2>Zakažite termin</h2>
+          <p>Popunite podatke i pošaljite zahtev.</p>
+        </div>
+      </div>
+      <form id="bookingForm" class="booking-form">
+        <label for="service">Vrsta usluge</label>
+        <select id="service" name="service" required>
+          <option value="">Izaberite uslugu</option>
+          <option>Popravka</option>
+          <option>Ugradnja</option>
+          <option>Provera</option>
+        </select>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Ime i prezime</label>
+            <input id="name" name="name" autocomplete="name" placeholder="Npr. Marko Marković" required>
+          </div>
+          <div class="field">
+            <label for="phone">Broj telefona</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="06x xxx xxxx" required>
+          </div>
+        </div>
+
+        <label for="email">Imejl adresa</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="vas@email.com" required>
+
+        <label for="address">Adresa intervencije</label>
+        <input id="address" name="address" autocomplete="street-address" placeholder="Ulica i broj, grad" required>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="date">Željeni datum</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="time">Željeno vreme</label>
+            <select id="time" name="time" required>
+              <option value="">Izaberite</option>
+              <option>08:00</option><option>09:00</option><option>10:00</option>
+              <option>11:00</option><option>12:00</option><option>13:00</option>
+              <option>14:00</option><option>15:00</option><option>16:00</option>
+              <option>17:00</option><option>18:00</option><option>19:00</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="details">Dodatne informacije <span class="optional">(opciono)</span></label>
+        <textarea id="details" name="details" rows="3" placeholder="Napišite model klime ili ukratko opišite problem."></textarea>
+
+        <label class="consent"><input type="checkbox" id="consent" required> <h7>Saglasan/saglasna sam da me servis kontaktira povodom ovog zahteva.</h7></label>
+        <button class="button button-primary submit-button" type="submit">Pošalji zahtev <span aria-hidden="true">➤</span></button>
+        
+        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="steps section">
+      <div class="section-heading">
+        <h6>KAKO FUNKCIONIŠE</h6>
+        <h2>Tri jednostavna koraka</h2>
+      </div>
+      <div class="steps-grid">
+        <article><span>1</span><h3>Pošaljite zahtev</h3><p>Izaberite uslugu i željeni termin.</p></article>
+        <article><span>2</span><h3>Sačekajte potvrdu</h3><p>Servis proverava raspoloživost i potvrđuje termin.</p></article>
+        <article><span>3</span><h3>Gotovo!</h3><p>Nakon završene usluge, servis evidentira radove.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontakt">
+    <img class="imga" src="Untitled design (24).png">
+    
+    <p class="footer-contact">Telefon: <a href="tel:+381 061 1711988">+381 061 1711988</a><br>Imejl: <a href="heatcoolmont@gmail.com">heatcoolmont@gmail.com</a></p>
+
+    <small>© <span id="year"></span> HC MONT</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
