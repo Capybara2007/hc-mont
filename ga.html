@@ -8,17 +8,24 @@
   <title>HC MONT</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="topbar">
-      <img src="Untitled design (24).png">
+    <a href="index.html">
+ <img src="Logo prednja strana ispravka.pdf (2).png">
+    </a>
+     
     <button class="menu-toggle" id="menuToggle" aria-label="Otvori meni" aria-expanded="false">☰</button>
     <nav class="nav" id="nav">
       <a href="index.html">Usluge</a>
       <a href="index.html">Zakaži termin</a>
       <a href="index.html">Kontakt</a>
-      <a href="galerija.html">Galerija</a>
+      <a href="ga.html">Galerija</a>
     </nav>
   </header>
+  <div class="gore">
+<img src="ovlascen servis Romstal klima uredjaja i toplotnih pumpu (3).png">
+  </div>
   <main>
 
 
@@ -29,13 +36,48 @@
         </div>
   </main>
 
-    <footer id="kontakt">
-    <img class="imga" src="Untitled design (24).png">
-    
-    <p class="footer-contact">Telefon: <a href="tel:+381 061 1711988">+381 061 1711988</a><br>Imejl: <a href="heatcoolmont@gmail.com">heatcoolmont@gmail.com</a></p>
 
-    <small>©</span>HC MONT</small>
+  <footer id="kontakt">
+    <img class="imga" src="Logo prednja strana ispravka.pdf (2).png">
+    
+    <p class="footer-contact">Telefon: <a href="tel:+381 066 5382226">+381 066 5382226</a><br>Imejl: <a href="gmail:heatcoolmont@gmail.com">heatcoolmont@gmail.com</a></p>
+    <center>
+<div class="dm">
+  <a href="https://www.instagram.com/_hcmont/">
+ 
+    <img src="Untitled Design (26).png" >
+  </a>
+   <a href="https://www.tiktok.com/@_hcmont">
+ 
+    <img src="Untitled Design (13).jpg" >
+  </a>
+    </div>
+    </center>
+    
+    
+    <small>© <span id="year"></span> HC MONT</small>
+   
   </footer>
-<script src="script.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const menuToggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("nav");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+  });
+
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "☰";
+    });
+  });
+</script>
+  
 </body>
 </html>
