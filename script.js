@@ -11,6 +11,7 @@ const timeSelect = document.getElementById("time");
 const formMessage = document.getElementById("formMessage");
 const submitButton = form.querySelector('[type="submit"]');
 
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const headers = {
@@ -142,8 +143,179 @@ async function updateAvailableTimes() {
   }
 }
 
-dateInput.addEventListener("change", updateAvailableTimes);
-timeSelect.addEventListener("focus", updateAvailableTimes);
+
+const recenzije = [
+    {
+        ime: "Nikola Krstic",
+        komentar: "Сарадња, комуникација и приступ. Свака част, одушевљена сам. 🙂",
+        vreme: "Пре 8 месеци"
+    },
+    {
+        ime: "Bulajic R.",
+        komentar: "Свака част, све похвале.",
+        vreme: "Пре 8 месеци"
+    },
+    {
+        ime: "Dalibor Gavrilovic",
+        komentar: "Одлично, мајсторе, тааако одлично, и да вам саветује и да вам да идеје за боље коришћење, све у свему мајстор за сваку препоруку.",
+        vreme: "Пре 2 месеца"
+    },
+    {
+        ime: "Aleksandar Laketa",
+        komentar: "Професионално, брзо за сваку препоруку.",
+        vreme: "Пре 2 месеца"
+    },
+    {
+        ime: "Slavoljub Ristanovic",
+        komentar: "Добра компанија за сваку препоруку. Инсталирали су ми два клима уређаја и одржавају их већ неколико година.",
+        vreme: "Пре 3 месеца"
+    },
+    {
+        ime: "Branka Jovic",
+        komentar: "Професионализам на највишем нивоу! Тим је тачан, брз и изузетно посвећен. Све препоруке!",
+        vreme: "Пре 3 месеца"
+    },
+    {
+        ime: "Radasin Maksimovic",
+        komentar: "За сваку препоруку.",
+        vreme: "Пре 4 месеца"
+    },
+    {
+        ime: "Biljana Živković",
+        komentar: "Брзо, професионално, вредно сваке препоруке! Надам се да ћемо поново сарађивати!",
+        vreme: "Пре 3 месеца"
+    },
+    {
+        ime: "Miljana Parovic",
+        komentar: "Више пута је потврђено да су момци одлични. Тачни, професионални, услужни и поштени. Свака препорука.",
+        vreme: "Пре 5 месеци"
+    },
+    {
+        ime: "Slobodanka Petrović",
+        komentar: "Браво! Вредни и одговорни момци. 👍 Честитам! 👏",
+        vreme: "Пре 3 месеца"
+    }
+];
+
+
+const reviewName = document.getElementById("reviewName");
+const reviewAvatar = document.getElementById("reviewAvatar");
+const reviewStars = document.getElementById("reviewStars");
+const reviewComment = document.getElementById("reviewComment");
+const reviewNumber = document.getElementById("reviewNumber");
+const reviewDots = document.getElementById("reviewDots");
+const reviewCard = document.getElementById("reviewCard");
+
+let trenutnaRecenzija = 0;
+let reviewTimer;
+let animacijaUToku = false;
+
+function postaviRecenziju(index) {
+    const r = recenzije[index];
+
+    reviewName.textContent = r.ime;
+    reviewAvatar.textContent = r.ime.trim().charAt(0).toUpperCase();
+    reviewStars.textContent = "★★★★★";
+    reviewStars.setAttribute("aria-label", "Ocena 5 od 5");
+    reviewComment.textContent = r.komentar;
+    reviewNumber.textContent = `${index + 1} / ${recenzije.length}`;
+
+    reviewDots.querySelectorAll(".review-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
+}
+
+function prikaziRecenziju(index, smer = 1) {
+    if (animacijaUToku || !recenzije.length) return;
+
+    const noviIndex = (index + recenzije.length) % recenzije.length;
+    if (noviIndex === trenutnaRecenzija) return;
+
+    animacijaUToku = true;
+
+    reviewCard.classList.remove(
+        "slide-in-left",
+        "slide-in-right",
+        "slide-out-left",
+        "slide-out-right"
+    );
+
+    // Trenutna kartica odlazi u izabranom smeru.
+    reviewCard.classList.add(
+        smer === 1 ? "slide-out-left" : "slide-out-right"
+    );
+
+    setTimeout(() => {
+        trenutnaRecenzija = noviIndex;
+        postaviRecenziju(trenutnaRecenzija);
+
+        // Postavljamo novu početnu poziciju bez animacije.
+        reviewCard.classList.remove("slide-out-left", "slide-out-right");
+        reviewCard.style.animation = "none";
+        reviewCard.style.transform =
+            smer === 1 ? "translateX(100%)" : "translateX(-100%)";
+
+        // Prisilno osvežavanje pre pokretanja ulazne animacije.
+        void reviewCard.offsetWidth;
+
+        reviewCard.style.animation = "";
+        reviewCard.style.transform = "";
+
+        reviewCard.classList.add(
+            smer === 1 ? "slide-in-right" : "slide-in-left"
+        );
+
+        setTimeout(() => {
+            reviewCard.classList.remove("slide-in-left", "slide-in-right");
+            animacijaUToku = false;
+        }, 380);
+
+    }, 300);
+}
+
+function pokreniSlajder() {
+    clearInterval(reviewTimer);
+
+    reviewTimer = setInterval(() => {
+        prikaziRecenziju(trenutnaRecenzija + 1, 1);
+    }, 5000);
+}
+
+// Napravi tačkice samo jednom.
+reviewDots.innerHTML = "";
+
+recenzije.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.className = "review-dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Prikaži recenziju ${index + 1}`);
+
+    dot.addEventListener("click", () => {
+        if (index === trenutnaRecenzija || animacijaUToku) return;
+
+        const smer = index > trenutnaRecenzija ? 1 : -1;
+        prikaziRecenziju(index, smer);
+        pokreniSlajder();
+    });
+
+    reviewDots.appendChild(dot);
+});
+
+// Prethodna recenzija — klizi udesno.
+document.getElementById("prevReview").addEventListener("click", () => {
+    prikaziRecenziju(trenutnaRecenzija - 1, -1);
+    pokreniSlajder();
+});
+
+// Sledeća recenzija — klizi ulevo.
+document.getElementById("nextReview").addEventListener("click", () => {
+    prikaziRecenziju(trenutnaRecenzija + 1, 1);
+    pokreniSlajder();
+});
+
+// Početna recenzija.
+postaviRecenziju(0);
+pokreniSlajder();
 
 // Slanje zahteva u Supabase.
 form.addEventListener("submit", async event => {
