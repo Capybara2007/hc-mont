@@ -8,9 +8,13 @@
   <title>HC MONT</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="topbar">
-      <img src="Untitled design (24).png">
+    <a href="index.html">
+ <img src="Logo prednja strana ispravka.pdf (2).png">
+    </a>
+     
     <button class="menu-toggle" id="menuToggle" aria-label="Otvori meni" aria-expanded="false">☰</button>
     <nav class="nav" id="nav">
       <a href="#usluge">Usluge</a>
@@ -19,6 +23,9 @@
       <a href="ga.html">Galerija</a>
     </nav>
   </header>
+  <div class="gore">
+<img src="ovlascen servis Romstal klima uredjaja i toplotnih pumpu (3).png">
+  </div>
 
   <main>
     <section class="hero" id="pocetna">
@@ -26,7 +33,10 @@
         <span class="eyebrow">POUZDAN SERVIS KLIMA</span>
         <h1>Uvek prijatna <span>temperatura.</span></h1>
         <p>Brza i pouzdana usluga popravke, ugradnje i provere klima uređaja.</p>
-        <a class="button button-primary" href="#zakazivanje">Zakaži termin <span aria-hidden="true">→</span></a>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#zakazivanje">Zakaži termin <span aria-hidden="true">→</span></a>
+          <a class="button button-primarys" href="tel:+381 066 5382226">☎ Pozovi</a>
+        </div>
         <div class="trust-list">
           <span>✓ Kvalitetna usluga</span>
           <span>✓ Dogovor oko termina</span>
@@ -61,14 +71,22 @@
           <span>Dogovor za profesionalnu ugradnju uređaja.</span>
           <span class="service-link">Izaberi uslugu →</span>
         </button>
-        <button class="service-card check" type="button" data-service="Provera">
+        <button class="service-card check" type="button" data-service="Godisnja provera">
           <span class="service-icon">✓</span>
           <strong>Godišnja provera</strong>
           <span>Zakažite proveru i održavanje klima uređaja.</span>
           <span class="service-link">Izaberi uslugu →</span>
         </button>
+         <button class="service-card check" type="button" data-service="Grejanje">
+          <span class="service-icon">🔥</span>
+          <strong>Grejanje</strong>
+          <span>Zakažite postavku i održavanje grejnog sistema.</span>
+          <span class="service-link">Izaberi uslugu →</span>
+        </button>
       </div>
-    </section>
+      </section>
+      
+      
 
     <section class="booking-section" id="zakazivanje">
       <div class="booking-intro">
@@ -85,7 +103,8 @@
           <option value="">Izaberite uslugu</option>
           <option>Popravka</option>
           <option>Ugradnja</option>
-          <option>Provera</option>
+          <option>Godisnja provera</option>
+          <option>Grejanje</option>
         </select>
 
         <div class="field-row">
@@ -114,10 +133,10 @@
             <label for="time">Željeno vreme</label>
             <select id="time" name="time" required>
               <option value="">Izaberite</option>
-              <option>08:00</option><option>09:00</option><option>10:00</option>
+              <option>08:30</option><option>09:00</option><option>10:00</option>
               <option>11:00</option><option>12:00</option><option>13:00</option>
               <option>14:00</option><option>15:00</option><option>16:00</option>
-              <option>17:00</option><option>18:00</option><option>19:00</option>
+              <option>17:00</option>
             </select>
           </div>
         </div>
@@ -131,6 +150,78 @@
         <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
       </form>
     </section>
+<br></br>
+<!-- GOOGLE RECENZIJE -->
+<section id="recenzije" class="reviews-section">
+    <div class="reviews-container">
+
+        <div class="reviews-heading">
+            
+            <h2>Google recenzije</h2>
+            
+        </div>
+
+        <div class="reviews-slider">
+
+            <button class="review-arrow" id="prevReview"
+                    aria-label="Prethodna recenzija">
+                &#10094;
+            </button>
+
+            <div class="review-card" id="reviewCard">
+                <div class="review-top">
+                    <div class="review-avatar" id="reviewAvatar">A</div>
+
+                    <div class="review-author">
+                        <h3 id="reviewName">Ime i prezime</h3>
+                        <span class="google-label">Google recenzija</span>
+                    </div>
+
+                    <div class="google-mark">Google</div>
+                </div>
+
+                <div class="review-stars" id="reviewStars"
+                     aria-label="Ocena 5 od 5">
+                    ★★★★★
+                </div>
+
+                <p class="review-comment" id="reviewComment">
+                    Recenzija će se prikazati ovde.
+                </p>
+
+                <div class="review-footer">
+                    <span id="reviewNumber">1 / 10</span>
+                    <span class="verified-note">
+                        <span class="google-dot"></span>
+                        Recenzije sa Google-a
+                    </span>
+                </div>
+            </div>
+
+            <button class="review-arrow" id="nextReview"
+                    aria-label="Sledeća recenzija">
+                &#10095;
+            </button>
+
+        </div>
+
+        <div class="review-dots" id="reviewDots"></div>
+
+        <div class="reviews-cta">
+            <h3>Da li ste koristili naše usluge?</h3>
+            <p>Vaše mišljenje nam znači. Ocenite svoje iskustvo
+               direktno na Google-u.</p>
+
+            <a class="google-review-button"
+               href="https://www.google.com/search?q=HC+MONT#lrd=0x892182a1c7bd6eef:0x759bc460cef88958,1,,,,"
+               target="_blank"
+               rel="noopener noreferrer">
+                ★ Ostavite recenziju na Google-u
+            </a>
+        </div>
+
+    </div>
+</section>
 
     <section class="steps section">
       <div class="section-heading">
@@ -146,10 +237,23 @@
   </main>
 
   <footer id="kontakt">
-    <img class="imga" src="Untitled design (24).png">
+    <img class="imga" src="Logo prednja strana ispravka.pdf (2).png">
     
-    <p class="footer-contact">Telefon: <a href="tel:+381 061 1711988">+381 061 1711988</a><br>Imejl: <a href="heatcoolmont@gmail.com">heatcoolmont@gmail.com</a></p>
-
+    <p class="footer-contact">Telefon: <a href="tel:+381 066 5382226">+381 066 5382226</a><br>Imejl: <a href="gmail:heatcoolmont@gmail.com">heatcoolmont@gmail.com</a></p>
+    <center>
+<div class="dm">
+  <a href="https://www.instagram.com/_hcmont/">
+ 
+    <img src="Untitled Design (26).png" >
+  </a>
+   <a href="https://www.tiktok.com/@_hcmont">
+ 
+    <img src="Untitled Design (13).jpg" >
+  </a>
+    </div>
+    </center>
+    
+    
     <small>© <span id="year"></span> HC MONT</small>
   </footer>
 
